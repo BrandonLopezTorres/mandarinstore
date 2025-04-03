@@ -1,5 +1,5 @@
 """
-URL configuration for mandarinstore project.
+URL configuration for mexexpress project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -21,5 +21,7 @@ from storeApp.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('storeapp/', include('storeApp.urls')),
-    path('',index)
+    path('api/', include('api.urls')),
+    path('', index),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

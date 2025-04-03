@@ -1,33 +1,33 @@
-#Cargar los elementos necesarios para utilizar los modulos de django
+#cargar los elementos necesarios para utiilzar los modulos de Django
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mandarinstore.settings')
 import django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mandarinstore.settings')
 django.setup()
 
-#Script para poblar la tabla Contact
+#Script para probar la tabla Product
 from faker import Faker
 import random
 from storeApp.models import Contact
 
 fake_generator = Faker()
 
-def populate_contacts(n_contacts=5):
-    for i in range(n_contacts):
+def populate_contacts( n_contacts = 5 ):
+    for i in range (n_contacts):
         fake_name = fake_generator.name()
         fake_address = fake_generator.address()
-        fake_phone = random.uniform(1000000000,9999999999)
+        fake_phone = fake_generator.phone_number()
         fake_email = fake_generator.email()
-        fake_active = random.random() > 0.5
+        fake_is_active = random.random() > 0.5
 
         contact = Contact.objects.get_or_create(
-            full_name = fake_name,
-            address = fake_address,
-            phone = fake_phone,
-            email = fake_email,
-            active = fake_active
+            contact_full_name = fake_name,
+            contact_address = fake_address,
+            contact_phone = fake_phone,
+            contact_email = fake_email,
+            contact_active = fake_is_active
         )
 
 if __name__ == '__main__':
-    print('Empezar a poblar la base de datos.')
+    print('Empezar a poblar la tabla contact')
     populate_contacts(30)
-    print('Finalizado.')
+    print('Finalizado')
